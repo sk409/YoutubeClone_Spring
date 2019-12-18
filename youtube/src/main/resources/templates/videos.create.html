@@ -1,0 +1,8 @@
+<div layout:decorator="app">
+    <th:block layout:fragment="content">
+        <form action="/videos" method="post" enctype="multipart/form-data">
+            <input type="file" name="video">
+            <input type="submit" value="アップロード" accept="video/*">
+        </form>
+    </th:block>
+</div>
