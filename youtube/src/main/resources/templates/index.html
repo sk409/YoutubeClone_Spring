@@ -1,5 +1,12 @@
-<div layout:decorator="app">
-    <th:block layout:fragment="content">
-        <p>ページ1</p>
-    </th:block>
-</div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/app}">
+
+<body>
+    <div layout:fragment="contents">
+        CONTENT
+        <div th:text="${msg}"></div>
+    </div>
+</body>
+
+</html>

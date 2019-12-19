@@ -1,0 +1,9 @@
+#header-user {
+    position: relative;
+}
+
+#user-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+}
