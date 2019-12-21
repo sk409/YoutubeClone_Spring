@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,6 @@
 </head>
 
 <body>
-    <div th:insert="components/_header"></div>
     <div layout:fragment="contents"></div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
