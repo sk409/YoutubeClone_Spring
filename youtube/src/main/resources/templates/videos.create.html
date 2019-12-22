@@ -1,8 +1,24 @@
-<div layout:decorator="app">
-    <th:block layout:fragment="content">
-        <form action="/videos" method="post" enctype="multipart/form-data">
-            <input type="file" name="video">
-            <input type="submit" value="アップロード" accept="video/*">
-        </form>
-    </th:block>
-</div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/app}">
+
+<body>
+    <div layout:fragment="contents">
+        <div class="card w-75 mx-auto mt-5">
+            <div class="card-header">
+                動画をアップロード
+            </div>
+            <div class="card-body dropbox">
+                <form th:action="@{/videos}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="video">
+                    <input class="btn btn-primary" type="submit" value="アップロード" accept="video/*">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div layout:fragment="scripts">
+        <script th:src="@{/js/videos.create.js}"></script>
+    </div>
+</body>
+
+</html>
