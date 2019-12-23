@@ -8,20 +8,45 @@
 </head>
 
 <body>
-    <div layout:fragment="contents">
-        <div class="card w-75 mx-auto mt-5">
-            <div class="card-header">
-                動画をアップロード
-            </div>
-            <div class="card-body">
-                <div class="dropbox">
-                    ドラッグ&ドロップでもアップロードできます
+    <div layout:fragment="contents" id="videos-create" class="pt-4">
+        <el-steps :active="steps.active" align-center>
+            <el-step title="動画を選択"></el-step>
+            <el-step title="詳細設定"></el-step>
+            <el-step title="公開設定"></el-step>
+        </el-steps>
+        <div class="w-75 mx-auto mt-4">
+            <el-card>
+                <div slot="header">
+                    動画をアップロード
                 </div>
-                <form th:action="@{/videos}" class="text-center mt-3" method="post" enctype="multipart/form-data">
-                    <input type="file" name="video">
-                    <input class="btn btn-primary" type="submit" value="アップロード" accept="video/*">
-                </form>
-            </div>
+                <div>
+                    <div v-if="isStep1">
+                        <div class="dropbox" @dragover.prevent @drop="setVideo">
+                            ドラッグ&ドロップでも動画を選択できます
+                        </div>
+                        <div class="text-center">
+                            <label class="btn btn-primary mt-3">
+                                動画を選択
+                                <input class="d-none" type="file" @change="setVideo">
+                            </label>
+                        </div>
+                    </div>
+                    <div v-else-if="isStep2">
+                        <video :src="videoDataUrl"></video>
+                        <el-form :model="video" :rules="form.video.rules">
+                            <el-form-item label="タイトル" prop="title">
+                                <el-input v-model="video.title"></el-input>
+                            </el-form-item>
+                            <el-form-item label="説明" prop="description">
+                                <el-input type="textarea" v-model="video.description"></el-input>
+                            </el-form-item>
+                        </el-form>
+                    </div>
+                    <div v-else-if="isStep3">
+                        STEP
+                    </div>
+                </div>
+            </el-card>
         </div>
     </div>
     <div layout:fragment="scripts">

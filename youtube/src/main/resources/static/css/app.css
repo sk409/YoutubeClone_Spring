@@ -26,3 +26,7 @@ body {
 .fill {
     flex-basis: 100%;
 }
+
+.resize-none {
+    resize: none;
+}

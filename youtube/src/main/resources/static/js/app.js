@@ -1,3 +1,5 @@
+ELEMENT.locale(ELEMENT.lang.ja);
+
 class Path {
     join(...components) {
         const delimiter = "/";
