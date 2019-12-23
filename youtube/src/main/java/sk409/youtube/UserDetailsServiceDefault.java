@@ -1,21 +1,31 @@
 package sk409.youtube;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import sk409.youtube.models.User;
+import sk409.youtube.repositories.UserRepository;
+
 @Component
 public class UserDetailsServiceDefault implements UserDetailsService {
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("*************************");
-        System.out.println("loadUserByUsername");
-        System.out.println("username = " + username);
-        System.out.println("*************************");
-        final UserDefault user = new UserDefault(username, (new BCryptPasswordEncoder()).encode("abc123"));
-        return new UserDetailsDefault(user);
+        final Optional<User> _user = userRepository.findByName(username);
+        if (!_user.isPresent()) {
+            throw new UsernameNotFoundException("Username not found");
+        }
+        final User user = _user.get();
+        final UserDefault userDefault = new UserDefault(user.getName(), user.getPassword());
+        return new UserDetailsDefault(userDefault);
     }
 }
