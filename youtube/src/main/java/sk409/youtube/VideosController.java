@@ -31,7 +31,8 @@ public class VideosController {
     }
 
     @RequestMapping(value = "videos", method = RequestMethod.POST)
-    public String store(@RequestParam("video") MultipartFile video, Principal principal) {
+    public String store(@RequestParam("title") String title, @RequestParam("video") MultipartFile video,
+            Principal principal) {
         if (principal == null) {
             return "NOT AUTHORIZED";
         }
@@ -46,8 +47,7 @@ public class VideosController {
             return "USER DOES NOT EXIST";
         }
         final User user = _user.get();
-        final String path = PathUtil.join(PathUtil.resources, "static", "videos", String.valueOf(user.getId()),
-                video.getOriginalFilename());
+        final String path = PathUtil.join(PathUtil.resources, "static", "videos", String.valueOf(user.getId()), title);
         try {
             videoService.save(path, video.getBytes());
         } catch (IOException exception) {
@@ -59,7 +59,6 @@ public class VideosController {
 
     @RequestMapping("/videos/create")
     public ModelAndView create(ModelAndView mav) {
-        System.out.println("/videos/create");
         mav.setViewName("videos.create");
         return mav;
     }

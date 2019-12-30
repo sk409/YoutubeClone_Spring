@@ -9,18 +9,18 @@
 
 <body>
     <div layout:fragment="contents" id="videos-create" class="pt-4">
-        <el-steps :active="steps.active" align-center>
+        <!-- <el-steps :active="steps.active" align-center>
             <el-step title="動画を選択"></el-step>
             <el-step title="詳細設定"></el-step>
             <el-step title="公開設定"></el-step>
-        </el-steps>
-        <div class="w-75 mx-auto mt-4">
-            <el-card>
+        </el-steps> -->
+        <div class="mt-4">
+            <el-card class="w-90 mx-auto">
                 <div slot="header">
                     動画をアップロード
                 </div>
                 <div>
-                    <div v-if="isStep1">
+                    <div v-if="isVideoSelectionStep">
                         <div class="dropbox" @dragover.prevent @drop="setVideo">
                             ドラッグ&ドロップでも動画を選択できます
                         </div>
@@ -31,19 +31,52 @@
                             </label>
                         </div>
                     </div>
-                    <div v-else-if="isStep2">
-                        <video :src="videoDataUrl"></video>
-                        <el-form :model="video" :rules="form.video.rules">
-                            <el-form-item label="タイトル" prop="title">
-                                <el-input v-model="video.title"></el-input>
-                            </el-form-item>
-                            <el-form-item label="説明" prop="description">
-                                <el-input type="textarea" v-model="video.description"></el-input>
-                            </el-form-item>
-                        </el-form>
-                    </div>
-                    <div v-else-if="isStep3">
-                        STEP
+                    <div v-else-if="isAdvancedSettingStep">
+                        <div class="d-flex">
+                            <div class="w-50">
+                                <el-form ref="detailForm" :model="video.detailForm" :rules="video.detailForm.rules">
+                                    <el-form-item label="タイトル" prop="title">
+                                        <el-input v-model="video.detailForm.title"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="説明" prop="description">
+                                        <el-input type="textarea" v-model="video.detailForm.description"></el-input>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                            <div class="w-50 p-1">
+                                <video ref="video" width="426" height="240" controls></video>
+                                <div class="bg-l10 p-3">
+                                    <div class="text-l5">
+                                        動画のリンク
+                                    </div>
+                                    <div class="text-link">
+                                        {{video.url}}
+                                    </div>
+                                    <div class="mt-2">
+                                        <div class="text-l5">
+                                            ファイル名
+                                        </div>
+                                        <div>
+                                            {{video.name}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>サムネイル</div>
+                        <div>
+                            <div ref="thumbnailUpload" class="d-inline-block border">
+                                <label class="text-l5">
+                                    サムネイルをアップロード
+                                    <input class="d-none" type="file">
+                                </label>
+                            </div>
+                            <canvas v-for="index in 3" :key="index" ref="canvases" :style="thumbnailStyle(index)"
+                                class="d-inline-block" @click="selectThumbnail(index)"></canvas>
+                        </div>
+                        <div class="text-center mt-3">
+                            <el-button type="primary" @click="uploadVideo">アップロード</el-button>
+                        </div>
                     </div>
                 </div>
             </el-card>

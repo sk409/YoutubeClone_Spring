@@ -7,7 +7,7 @@ new Vue({
     },
     methods: {
         transitionToVideosCreate() {
-            location.href = routes.videos.create();
+            location.href = ROUTES.videos.create();
         },
         toggleUserMenu() {
             this.userMenu.isVisible = !this.userMenu.isVisible;
