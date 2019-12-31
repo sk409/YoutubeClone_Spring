@@ -1,0 +1,1 @@
+ALTER TABLE videos ADD user_id INT(11) NOT NULL

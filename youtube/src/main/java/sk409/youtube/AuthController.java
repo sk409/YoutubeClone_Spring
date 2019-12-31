@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import sk409.youtube.models.User;
-import sk409.youtube.services.UserService;
+import sk409.youtube.services.UserServiceDefault;
 
 @Controller
 public class AuthController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceDefault userService;
 
     @GetMapping("register")
     public String showRegistrationForm() {

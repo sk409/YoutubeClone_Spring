@@ -127,6 +127,7 @@ new Vue({
                 }
                 const formData = new FormData();
                 formData.append("title", this.video.detailForm.title);
+                formData.append("description", this.video.detailForm.description);
                 formData.append("video", this.video.file);
                 axios.post(ROUTES.videos.store(), formData, {
                     "Content-Type": HTTP.header.contentType.multipartFormData

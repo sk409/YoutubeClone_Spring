@@ -1,5 +1,6 @@
 package sk409.youtube.models;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,12 @@ public class User {
 
     @Column(length = 64, nullable = false)
     private String password;
+
+    @Column(name = "created_at", insertable = false)
+    private Date createdAt;
+
+    @Column(name = "updated_at", insertable = false)
+    private Date updatedAt;
 
     public User() {
     }

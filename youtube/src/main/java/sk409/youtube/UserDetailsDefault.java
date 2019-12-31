@@ -11,9 +11,9 @@ public class UserDetailsDefault extends User {
 
     public UserDetailsDefault(UserDefault user) {
         super(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
-        System.out.println("*************************");
-        System.out.println("UserDetailsDefault");
-        System.out.println("*************************");
+        // System.out.println("*************************");
+        // System.out.println("UserDetailsDefault");
+        // System.out.println("*************************");
         this.user = user;
     }
 
