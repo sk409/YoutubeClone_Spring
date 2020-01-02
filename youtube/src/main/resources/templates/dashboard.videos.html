@@ -4,8 +4,18 @@
 
 
 <body>
-    <div layout:fragment="dashboard-contents" id="index" class="contents h-100">
-
+    <div layout:fragment="dashboard-contents" id="dashboard-videos" class="contents h-100">
+        <el-tabs v-model="activeTab">
+            <el-tab-pane label="ホーム" name="home">
+                <div>アップロード動画</div>
+                <my-button></my-button>
+                <div v-for="videos">
+                </div>
+            </el-tab-pane>
+        </el-tabs>
+    </div>
+    <div layout:fragment="scripts">
+        <script type="module" th:src="@{/js/dashboard.videos.js}"></script>
     </div>
 </body>
 

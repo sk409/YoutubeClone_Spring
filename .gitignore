@@ -31,3 +31,7 @@ build/
 .vscode/
 
 .DS_Store
+node_modules
+
+youtube/src/main/resources/static/images
+youtube/src/main/resources/static/videos
