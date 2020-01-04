@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div th:fragment="navbar.search">
+      <!-- <nav>
+            <div class="nav-wrapper">
+                <a href="" class="brand-logo">YouTube Clone</a>
+                <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+        <ul id="sidenav">
+            <li>ホーム</li>
+        </ul> -->
+      <nav>
+        <div class="nav-wrapper white">
+          <div class="left">
+            <span href="#" data-target="mobile-demo" class="sidenav-trigger"
+              ><i class="material-icons grey-text">menu</i></span
+            >
+            <a href="#!" class="red-text">YouTube</a>
+          </div>
+          <div class="right red-text">
+            <a class="red-text">ビデオ</a>
+            <a class="red-text" href="">チャンネル</a>
+          </div>
+        </div>
+      </nav>
+
+      <ul ref="sidenav" class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

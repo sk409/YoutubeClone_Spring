@@ -1,6 +1,12 @@
 import "../sass/app.scss";
+import Vue from "vue";
 
-ELEMENT.locale(ELEMENT.lang.ja);
+Vue.prototype.$sidenav = function() {
+  var elems = document.querySelectorAll(".sidenav");
+  M.Sidenav.init(elems, {});
+};
+
+//ELEMENT.locale(ELEMENT.lang.ja);
 
 export const COLOR = {
   success: "#67C23A"

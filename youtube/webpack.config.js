@@ -9,8 +9,7 @@ module.exports = (env, args) => {
   const devmode = args.mode === "development";
   return {
     module: {
-      rules: [
-        {
+      rules: [{
           test: /\.vue$/,
           loader: "vue-loader"
         },

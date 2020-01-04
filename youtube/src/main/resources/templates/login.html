@@ -3,15 +3,60 @@
     layout:decorate="~{layouts/app}">
 
 <body>
-    <div layout:fragment="contents">
-        <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
-            last exception: <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+    <div layout:fragment="contents" class="container">
+        <div class="row">
+            <div class="col s12">
+                <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+                    last exception: <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+                </div>
+            </div>
         </div>
-        <form method="POST" th:action="@{/login}">
-            <div><input type="text" name="username"></div>
-            <div><input type="password" name="password"></div>
-            <div><input type="submit" value="ログイン"></div>
-        </form>
+        <div class="row">
+            <div class="col s8">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12">
+                                <span class="card-title">ログイン</span>
+                            </div>
+                        </div>
+                        <form method="POST" th:action="@{/login}">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="username-input" type="text" name="username">
+                                    <label for="username-input">ユーザ名</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="password" type="password" name="password">
+                                    <label for="password-input">パスワード</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 center">
+                                    <button class="btn-flat teal white-text waves-effect waves-light" type="submit"
+                                        name="action">ログイン
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <a href="/register">アカウントをお持ちでない方</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="row">
+                    <div class="col s12 center"><a href="#" class="red white-text btn">Google でログイン</a></div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
